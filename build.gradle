@@ -1,0 +1,67 @@
+plugins {
+    id 'fabric-loom' version '1.6.+'
+    id 'maven-publish'
+}
+
+version = project.mod_version
+group = project.maven_group
+archivesBaseName = project.archives_base_name
+
+repositories {
+    mavenCentral()
+    maven { url = "https://api.modrinth.com/maven" }
+    maven { url = "https://maven.fabricmc.net/" }
+    maven { url = "https://maven.architectury.dev/" }
+    maven { url = "https://raw.githubusercontent.com/Ladysnake/Cardinal-Components-API/maven/" }
+}
+
+dependencies {
+    minecraft "com.mojang:minecraft:${project.minecraft_version}"
+    mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
+    modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+    
+    implementation "javax.annotation:javax.annotation-api:${project.javax_annotation_version}"
+}
+
+processResources {
+    inputs.property "version", project.version
+    inputs.property "loader_version", project.loader_version
+    inputs.property "minecraft_version", project.minecraft_version
+    inputs.property "fabric_version", project.fabric_version
+
+    filesMatching("fabric.mod.json") {
+        expand "version": project.version,
+                "loader_version": project.loader_version,
+                "minecraft_version": project.minecraft_version,
+                "fabric_version": project.fabric_version
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    it.options.release = 21
+}
+
+java {
+    withSourcesJar()
+}
+
+jar {
+    from("LICENSE") {
+        rename { "${it}_${project.archivesBaseName}" }
+    }
+}
+
+publishingPublications {
+    mavenJava(MavenPublication) {
+        from components.java
+    }
+}
+
+publishing {
+    repositories {
+        local {
+            url = layout.buildDirectory.dir("repo")
+        }
+    }
+}
