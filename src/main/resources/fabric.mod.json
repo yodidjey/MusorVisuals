@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "musorvisuals",
+  "version": "${version}",
+  "name": "MusorVisuals",
+  "description": "Advanced Visual Modification for Minecraft - Professional ESP, HUD, Particles & Custom Rendering",
+  "authors": [
+    "yodidjey"
+  ],
+  "contact": {
+    "sources": "https://github.com/yodidjey/MusorVisuals"
+  },
+  "license": "MIT",
+  "environment": "client",
+  "entrypoints": {
+    "main": [
+      "com.musor.visuals.MusorVisualsMod"
+    ]
+  },
+  "mixins": [
+    "musorvisuals.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "minecraft": "${minecraft_version}",
+    "java": ">=21"
+  }
+}
