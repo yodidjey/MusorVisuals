@@ -1,11 +1,11 @@
 package com.musor.visuals.module.modules;
 
 import com.musor.visuals.module.Module;
+import net.minecraft.client.Minecraft;
 
-/**
- * Модуль для эффекта размытия движения.
- */
 public class MotionBlurModule extends Module {
+    private Minecraft client = Minecraft.getInstance();
+
     public MotionBlurModule() {
         super("Motion Blur", "Эффект размытия при движении камеры");
     }
@@ -18,6 +18,7 @@ public class MotionBlurModule extends Module {
 
     @Override
     public void onTick() {
-        // Реализация с шейдерами
+        if (!enabled) return;
+        // Применение Motion Blur
     }
 }

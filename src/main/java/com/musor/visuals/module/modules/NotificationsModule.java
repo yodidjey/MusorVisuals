@@ -1,14 +1,13 @@
 package com.musor.visuals.module.modules;
 
 import com.musor.visuals.module.Module;
+import net.minecraft.client.Minecraft;
 import java.util.Queue;
 import java.util.LinkedList;
 
-/**
- * Модуль для отображения кастомных уведомлений.
- */
 public class NotificationsModule extends Module {
-    private Queue<String> notifications = new LinkedList<>();
+    private Minecraft client = Minecraft.getInstance();
+    private Queue<NotificationData> notifications = new LinkedList<>();
 
     public NotificationsModule() {
         super("Notifications", "Кастомные всплывающие уведомления");
@@ -25,10 +24,21 @@ public class NotificationsModule extends Module {
 
     @Override
     public void onTick() {
+        if (!enabled) return;
         // Рендеринг уведомлений
     }
 
     public void addNotification(String message) {
-        notifications.offer(message);
+        notifications.offer(new NotificationData(message, System.currentTimeMillis()));
+    }
+
+    private static class NotificationData {
+        String message;
+        long createdTime;
+
+        NotificationData(String message, long createdTime) {
+            this.message = message;
+            this.createdTime = createdTime;
+        }
     }
 }

@@ -1,11 +1,12 @@
 package com.musor.visuals.module.modules;
 
 import com.musor.visuals.module.Module;
+import com.musor.visuals.MusorVisualsMod;
+import net.minecraft.client.Minecraft;
 
-/**
- * Модуль для изменения атмосферы мира (время суток, цвет неба).
- */
 public class AmbienceModule extends Module {
+    private Minecraft client = Minecraft.getInstance();
+
     public AmbienceModule() {
         super("Ambience", "Изменение времени суток и цвета неба");
     }
@@ -20,8 +21,8 @@ public class AmbienceModule extends Module {
 
     @Override
     public void onTick() {
-        if (enabled) {
-            // Будет реализовано с миксинами
-        }
+        if (!enabled || client.level == null) return;
+        float time = getSettingAsFloat("time", 6000.0f);
+        // Установка времени суток
     }
 }

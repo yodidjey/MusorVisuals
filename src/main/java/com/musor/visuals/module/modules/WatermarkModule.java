@@ -1,13 +1,14 @@
 package com.musor.visuals.module.modules;
 
 import com.musor.visuals.module.Module;
+import net.minecraft.client.Minecraft;
 
-/**
- * Модуль для отображения логотипа и названия клиента.
- */
 public class WatermarkModule extends Module {
+    private Minecraft client = Minecraft.getInstance();
+    private long startTime = System.currentTimeMillis();
+
     public WatermarkModule() {
-        super("Watermark", "Логотип и стилизованная надпись клиента");
+        super("Watermark", "Логотип и название клиента");
     }
 
     @Override
@@ -22,6 +23,7 @@ public class WatermarkModule extends Module {
 
     @Override
     public void onTick() {
-        // Рендеринг ватермарка
+        if (!enabled) return;
+        // Рендеринг в экран обработчике
     }
 }

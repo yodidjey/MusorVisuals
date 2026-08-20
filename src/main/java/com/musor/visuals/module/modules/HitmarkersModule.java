@@ -1,11 +1,14 @@
 package com.musor.visuals.module.modules;
 
 import com.musor.visuals.module.Module;
+import net.minecraft.client.Minecraft;
+import java.util.LinkedList;
+import java.util.Queue;
 
-/**
- * Модуль для показателей урона и попаданий.
- */
 public class HitmarkersModule extends Module {
+    private Minecraft client = Minecraft.getInstance();
+    private Queue<Long> hitTimes = new LinkedList<>();
+
     public HitmarkersModule() {
         super("Hitmarkers", "Показатели урона и попаданий");
     }
@@ -19,6 +22,11 @@ public class HitmarkersModule extends Module {
 
     @Override
     public void onTick() {
-        // Отображение хитмаркеров
+        if (!enabled) return;
+        // Отображение хитмаркеров при попадании
+    }
+
+    public void onHit() {
+        hitTimes.offer(System.currentTimeMillis());
     }
 }

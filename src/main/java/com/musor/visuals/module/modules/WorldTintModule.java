@@ -1,11 +1,11 @@
 package com.musor.visuals.module.modules;
 
 import com.musor.visuals.module.Module;
+import net.minecraft.client.Minecraft;
 
-/**
- * Модуль для тонирования мира.
- */
 public class WorldTintModule extends Module {
+    private Minecraft client = Minecraft.getInstance();
+
     public WorldTintModule() {
         super("World Tint", "Тонирование блоков и мира");
     }
@@ -20,6 +20,7 @@ public class WorldTintModule extends Module {
 
     @Override
     public void onTick() {
-        // Реализация с шейдерами
+        if (!enabled) return;
+        // Тонирование мира
     }
 }

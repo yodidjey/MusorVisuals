@@ -1,11 +1,11 @@
 package com.musor.visuals.module.modules;
 
 import com.musor.visuals.module.Module;
+import net.minecraft.client.Minecraft;
 
-/**
- * Модуль для кастомных анимаций удара.
- */
 public class SwingAnimationModule extends Module {
+    private Minecraft client = Minecraft.getInstance();
+
     public SwingAnimationModule() {
         super("Swing Animation", "Кастомные анимации удара/взмаха");
     }
@@ -18,6 +18,7 @@ public class SwingAnimationModule extends Module {
 
     @Override
     public void onTick() {
+        if (!enabled) return;
         // Модификация анимаций
     }
 }

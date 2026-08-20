@@ -1,11 +1,11 @@
 package com.musor.visuals.module.modules;
 
 import com.musor.visuals.module.Module;
+import net.minecraft.client.Minecraft;
 
-/**
- * Модуль для отображения прочности брони и предметов.
- */
 public class ArmorHUDModule extends Module {
+    private Minecraft client = Minecraft.getInstance();
+
     public ArmorHUDModule() {
         super("Armor HUD", "Отображение брони и прочности предметов");
     }
@@ -21,6 +21,7 @@ public class ArmorHUDModule extends Module {
 
     @Override
     public void onTick() {
+        if (!enabled) return;
         // Рендеринг брони
     }
 }

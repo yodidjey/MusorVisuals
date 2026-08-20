@@ -1,11 +1,11 @@
 package com.musor.visuals.module.modules;
 
 import com.musor.visuals.module.Module;
+import net.minecraft.client.Minecraft;
 
-/**
- * Модуль для кастомного прицела.
- */
 public class CrosshairModule extends Module {
+    private Minecraft client = Minecraft.getInstance();
+
     public CrosshairModule() {
         super("Crosshair", "Кастомный прицел");
     }
@@ -20,6 +20,7 @@ public class CrosshairModule extends Module {
 
     @Override
     public void onTick() {
+        if (!enabled) return;
         // Рендеринг прицела
     }
 }

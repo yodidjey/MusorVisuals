@@ -1,11 +1,11 @@
 package com.musor.visuals.module.modules;
 
 import com.musor.visuals.module.Module;
+import net.minecraft.client.Minecraft;
 
-/**
- * Модуль для отключения дождя и изменения погоды.
- */
 public class WeatherModifierModule extends Module {
+    private Minecraft client = Minecraft.getInstance();
+
     public WeatherModifierModule() {
         super("Weather Modifier", "Отключение осадков");
     }
@@ -19,6 +19,11 @@ public class WeatherModifierModule extends Module {
 
     @Override
     public void onTick() {
-        // Реализация с миксинами
+        if (!enabled || client.level == null) return;
+        boolean noRain = getSettingAsBoolean("disableRain", true);
+        if (noRain) {
+            client.level.setRainLevel(0.0f);
+            client.level.setThunderLevel(0.0f);
+        }
     }
 }

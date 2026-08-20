@@ -1,12 +1,13 @@
 package com.musor.visuals.module.modules;
 
 import com.musor.visuals.module.Module;
+import net.minecraft.client.Minecraft;
+import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Модуль для отображения списка активных модулей.
- */
 public class ArrayListModule extends Module {
+    private Minecraft client = Minecraft.getInstance();
+
     public ArrayListModule() {
         super("ArrayList", "Список активных модулей на экране");
     }
@@ -23,6 +24,7 @@ public class ArrayListModule extends Module {
 
     @Override
     public void onTick() {
+        if (!enabled) return;
         // Рендеринг списка модулей
     }
 }

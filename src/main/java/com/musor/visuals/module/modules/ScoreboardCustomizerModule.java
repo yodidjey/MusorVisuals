@@ -1,11 +1,11 @@
 package com.musor.visuals.module.modules;
 
 import com.musor.visuals.module.Module;
+import net.minecraft.client.Minecraft;
 
-/**
- * Модуль для стилизации таблицы счета.
- */
 public class ScoreboardCustomizerModule extends Module {
+    private Minecraft client = Minecraft.getInstance();
+
     public ScoreboardCustomizerModule() {
         super("Scoreboard Customizer", "Стилизация и перемещение таблицы счета");
     }
@@ -21,6 +21,7 @@ public class ScoreboardCustomizerModule extends Module {
 
     @Override
     public void onTick() {
-        // Перемещение и стилизация скорборда
+        if (!enabled) return;
+        // Модификация скорборда
     }
 }

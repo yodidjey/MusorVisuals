@@ -1,11 +1,12 @@
 package com.musor.visuals.module.modules;
 
 import com.musor.visuals.module.Module;
+import net.minecraft.client.Minecraft;
 
-/**
- * Модуль для физики выпадающих предметов.
- */
 public class ItemPhysicsModule extends Module {
+    private Minecraft client = Minecraft.getInstance();
+    private float itemRotation = 0;
+
     public ItemPhysicsModule() {
         super("Item Physics", "3D физика выпадающих предметов");
     }
@@ -19,6 +20,8 @@ public class ItemPhysicsModule extends Module {
 
     @Override
     public void onTick() {
+        if (!enabled) return;
+        itemRotation += getSettingAsFloat("rotationSpeed", 1.0f);
         // Модификация физики предметов
     }
 }

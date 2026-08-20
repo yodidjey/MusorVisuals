@@ -1,11 +1,11 @@
 package com.musor.visuals.module.modules;
 
 import com.musor.visuals.module.Module;
+import net.minecraft.client.Minecraft;
 
-/**
- * Модуль для отображения индикатора перезарядки атаки.
- */
 public class CooldownBarModule extends Module {
+    private Minecraft client = Minecraft.getInstance();
+
     public CooldownBarModule() {
         super("Cooldown Bar", "Индикатор перезарядки атаки");
     }
@@ -22,6 +22,8 @@ public class CooldownBarModule extends Module {
 
     @Override
     public void onTick() {
-        // Рендеринг индикатора перезарядки
+        if (!enabled) return;
+        float cooldown = client.player.getAttackStrengthScale(0);
+        // Рендеринг индикатора
     }
 }

@@ -1,11 +1,11 @@
 package com.musor.visuals.module.modules;
 
 import com.musor.visuals.module.Module;
+import net.minecraft.client.Minecraft;
 
-/**
- * Модуль для кастомизации неба, звезд и луны.
- */
 public class CustomSkyModule extends Module {
+    private Minecraft client = Minecraft.getInstance();
+
     public CustomSkyModule() {
         super("Custom Sky", "Кастомизация неба, звезд и луны");
     }
@@ -20,6 +20,7 @@ public class CustomSkyModule extends Module {
 
     @Override
     public void onTick() {
-        // Реализация с рендерингом
+        if (!enabled) return;
+        // Модификация неба
     }
 }

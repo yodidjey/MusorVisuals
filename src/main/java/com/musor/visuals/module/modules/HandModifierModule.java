@@ -1,11 +1,11 @@
 package com.musor.visuals.module.modules;
 
 import com.musor.visuals.module.Module;
+import net.minecraft.client.Minecraft;
 
-/**
- * Модуль для изменения положения и размера рук/предметов.
- */
 public class HandModifierModule extends Module {
+    private Minecraft client = Minecraft.getInstance();
+
     public HandModifierModule() {
         super("Hand Modifier", "Изменение положения рук и предметов");
     }
@@ -19,6 +19,7 @@ public class HandModifierModule extends Module {
 
     @Override
     public void onTick() {
+        if (!enabled) return;
         // Модификация положения рук
     }
 }

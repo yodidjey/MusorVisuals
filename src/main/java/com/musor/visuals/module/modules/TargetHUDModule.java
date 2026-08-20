@@ -1,13 +1,16 @@
 package com.musor.visuals.module.modules;
 
 import com.musor.visuals.module.Module;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.world.entity.player.Player;
 
-/**
- * Модуль для панели информации о цели.
- */
 public class TargetHUDModule extends Module {
+    private Minecraft client = Minecraft.getInstance();
+    private TargetESPModule targetModule;
+
     public TargetHUDModule() {
-        super("Target HUD", "Панель с информацией о цели");
+        super("Target HUD", "Панель с инфо о цели");
     }
 
     @Override
@@ -25,6 +28,7 @@ public class TargetHUDModule extends Module {
 
     @Override
     public void onTick() {
-        // Рендеринг HUD цели
+        if (!enabled) return;
+        targetModule = (TargetESPModule) null; // Получить из менеджера
     }
 }

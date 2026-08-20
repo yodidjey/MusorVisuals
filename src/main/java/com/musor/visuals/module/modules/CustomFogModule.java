@@ -1,11 +1,12 @@
 package com.musor.visuals.module.modules;
 
 import com.musor.visuals.module.Module;
+import net.minecraft.client.Minecraft;
+import org.lwjgl.opengl.GL11;
 
-/**
- * Модуль для настройки тумана.
- */
 public class CustomFogModule extends Module {
+    private Minecraft client = Minecraft.getInstance();
+
     public CustomFogModule() {
         super("Custom Fog", "Настройка цвета и плотности тумана");
     }
@@ -21,6 +22,7 @@ public class CustomFogModule extends Module {
 
     @Override
     public void onTick() {
-        // Реализация с RenderSystem
+        if (!enabled) return;
+        // Модификация тумана
     }
 }

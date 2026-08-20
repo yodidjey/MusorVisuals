@@ -1,11 +1,12 @@
 package com.musor.visuals.module.modules;
 
 import com.musor.visuals.module.Module;
+import net.minecraft.client.Minecraft;
 
-/**
- * Модуль для отображения миникарты/радара.
- */
 public class RadarModule extends Module {
+    private Minecraft client = Minecraft.getInstance();
+    private float radarRotation = 0;
+
     public RadarModule() {
         super("Radar", "Миникарта/радар с отображением игроков");
     }
@@ -23,6 +24,8 @@ public class RadarModule extends Module {
 
     @Override
     public void onTick() {
+        if (!enabled) return;
+        radarRotation += 1;
         // Рендеринг радара
     }
 }

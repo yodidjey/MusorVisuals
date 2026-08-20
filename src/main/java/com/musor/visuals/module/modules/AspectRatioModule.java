@@ -1,11 +1,11 @@
 package com.musor.visuals.module.modules;
 
 import com.musor.visuals.module.Module;
+import net.minecraft.client.Minecraft;
 
-/**
- * Модуль для изменения соотношения сторон экрана.
- */
 public class AspectRatioModule extends Module {
+    private Minecraft client = Minecraft.getInstance();
+
     public AspectRatioModule() {
         super("Aspect Ratio", "Изменение соотношения сторон");
     }
@@ -17,6 +17,8 @@ public class AspectRatioModule extends Module {
 
     @Override
     public void onTick() {
-        // Изменение соотношения сторон
+        if (!enabled) return;
+        float ratio = getSettingAsFloat("aspectRatio", 16.0f / 9.0f);
+        // Изменение FOV согласно соотношению
     }
 }

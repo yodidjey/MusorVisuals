@@ -1,11 +1,12 @@
 package com.musor.visuals.module.modules;
 
 import com.musor.visuals.module.Module;
+import net.minecraft.client.Minecraft;
+import org.lwjgl.opengl.GL11;
 
-/**
- * Модуль для отключения визуальных элементов.
- */
 public class NoRenderModule extends Module {
+    private Minecraft client = Minecraft.getInstance();
+
     public NoRenderModule() {
         super("NoRender", "Отключение элементов: огонь, слепота, тотемы, взрывы");
     }
@@ -21,6 +22,19 @@ public class NoRenderModule extends Module {
 
     @Override
     public void onTick() {
-        // Отключение элементов рендеринга
+        if (!enabled) return;
+
+        boolean noFire = getSettingAsBoolean("noFire", true);
+        boolean noBlindness = getSettingAsBoolean("noBlindness", true);
+        boolean noTotem = getSettingAsBoolean("noTotem", true);
+
+        // Отключение эффектов рендеринга
+        if (noFire && client.player != null) {
+            client.player.setRemainingFireTicks(0);
+        }
+
+        if (noBlindness && client.player != null) {
+            client.player.removeEffect(net.minecraft.world.effect.MobEffects.BLINDNESS);
+        }
     }
 }
